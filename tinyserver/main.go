@@ -17,7 +17,7 @@ import (
 
 const (
 	name    = "tinyserver"
-	version = "0.0.2dev"
+	version = "0.0.3dev"
 )
 
 type option struct {
@@ -199,10 +199,12 @@ func main() {
 		log.Fatalf("is not directory: %v", opt.root)
 	}
 
-	msg := fmt.Sprintln("[simple file server running]")
-	msg += fmt.Sprintf("\topt.port: %v\n", opt.port)
-	msg += fmt.Sprintf("\topt.root: %v\n", opt.root)
-	msg += fmt.Sprintf("\topt.allowAddr: %v\n", opt.allowAddr)
+	msg := `[simple file server running]
+options:
+	opt.port: ` + opt.port + `
+	opt.root: ` + opt.root + `
+	opt.allowAddr: ` + opt.allowAddr + `
+push ctrl-c then stopped`
 	log.Println(msg)
 
 	http.Handle("/", ServWithLog(http.FileServer(http.Dir(opt.root))))
