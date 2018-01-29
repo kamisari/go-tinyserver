@@ -17,7 +17,7 @@ import (
 
 const (
 	name    = "tinyserver"
-	version = "0.0.1dev"
+	version = "0.0.2dev"
 )
 
 type option struct {
@@ -178,9 +178,11 @@ func main() {
 	}
 
 	if opt.root == "" {
-		if opt.root, err := os.Getwd(); err != nil {
+		pwd, err := os.Getwd()
+		if err != nil {
 			log.Fatal(err)
 		}
+		opt.root = pwd
 	}
 
 	if opt.genConf {
