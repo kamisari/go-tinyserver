@@ -17,7 +17,7 @@ import (
 
 const (
 	name    = "tinyserver"
-	version = "0.0.3dev"
+	version = "0.0.4dev"
 )
 
 type option struct {
@@ -52,7 +52,7 @@ var AllowAddrMap = make(map[string]bool)
 func init() {
 	sep := " "
 	bind := "127.0.0.1:8080"
-	log.SetPrefix("[" + name + " v" + version + "] ")
+	log.SetPrefix("[" + name + " " + version + "]:")
 
 	flag.BoolVar(&opt.version, "version", false, "show version")
 	flag.StringVar(&opt.port, "port", bind, "listen address")
