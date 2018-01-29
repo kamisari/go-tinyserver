@@ -1,12 +1,12 @@
-server
-======
+go-tinyserver
+=============
 tiny fileserver
 
 Usage:
 ------
 ```sh
 cd ${serv_root}
-server
+tinyserver
 # default port is 127.0.0.1:8080
 # push ctrl-c to exit
 ```
@@ -14,7 +14,7 @@ server
 Install:
 --------
 ```sh
-go get -v github.com/kamisari/go-fileserv
+go get -v github.com/kamisari/go-tinyserver
 ```
 
 License:

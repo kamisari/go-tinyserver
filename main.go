@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	name    = "server"
+	name    = "tinyserver"
 	version = "0.0.0dev"
 )
 
