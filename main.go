@@ -51,10 +51,11 @@ var AllowAddrMap = make(map[string]bool)
 
 func init() {
 	sep := " "
+	bind := "127.0.0.1:8080"
 	log.SetPrefix("[" + name + " v" + version + "] ")
 
 	flag.BoolVar(&opt.version, "version", false, "show version")
-	flag.StringVar(&opt.port, "port", "127.0.0.1:8080", "listen address")
+	flag.StringVar(&opt.port, "port", bind, "listen address")
 	flag.StringVar(&opt.root, "root", "", "specify serv root")
 	flag.StringVar(&opt.allowAddr, "allow", "127.0.0.1", "allow address list. separator is space")
 	// TODO: fix
@@ -77,13 +78,19 @@ func init() {
 				}
 				s := strings.TrimSpace(sc.Text())
 				switch {
-				case strings.HasPrefix(s, "#") || s == "":
+				case strings.HasPrefix(s, "#"):
 					// pass comments
 				case strings.HasPrefix(s, "allow="):
 					opt.allowAddr = opt.allowAddr + sep + strings.TrimPrefix(s, "allow=")
 				case strings.HasPrefix(s, "port="):
+					if opt.port == bind {
+						// TODO: warning message
+					}
 					opt.port = strings.TrimPrefix(s, "port=")
 				case strings.HasPrefix(s, "root="):
+					if opt.root == "" {
+						// TODO: warning message
+					}
 					opt.root = strings.TrimPrefix(s, "root=")
 				default:
 					// TODO: error check
@@ -117,6 +124,9 @@ func ipValidator(address string) string {
 		return ""
 	default:
 		// TODO: IP6
+		if isValid(address) {
+			return address
+		}
 		return ""
 	}
 }
@@ -143,14 +153,18 @@ func genConf(w io.Writer) error {
 # date: ` + fmt.Sprint(time.Now().Date()) + `
 # for static file server
 
-# list of allow remote IP address
+## list of allow remote IP address
 #allow=127.0.0.1
 #allow=192.168.1.x
 
-# specify lesten port
+## specify lesten port
+# only localhost
 #port=127.0.0.1:8080
+# accept all address
+#port=0.0.0.0:8080
+#port=:8080
 
-# specify root directory
+## specify root directory
 #root=public`
 	_, err := fmt.Fprintln(w, tmpl)
 	return err
