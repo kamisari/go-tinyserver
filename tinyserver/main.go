@@ -158,11 +158,10 @@ func genConf(w io.Writer) error {
 #allow=192.168.1.x
 
 ## specify lesten port
-# only localhost
-#port=127.0.0.1:8080
-# accept all address
-#port=0.0.0.0:8080
 #port=:8080
+# or
+# accept localhost only
+#port=127.0.0.1:8080
 
 ## specify root directory
 #root=public`
