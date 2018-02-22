@@ -17,7 +17,7 @@ import (
 
 const (
 	name    = "tinyserver"
-	version = "0.0.4dev"
+	version = "0.1.0dev"
 )
 
 type option struct {
@@ -131,6 +131,7 @@ func ipValidator(address string) string {
 	}
 }
 
+// ServWithLog for with logger
 func ServWithLog(handler http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		log.Println(r.RemoteAddr, r.RequestURI)
@@ -174,6 +175,11 @@ func main() {
 		opt.root = flag.Arg(0)
 	} else if n != 0 {
 		log.Fatal("invalid argument:", flag.Args())
+	}
+
+	if opt.version {
+		fmt.Printf("%s version %s\n", name, version)
+		os.Exit(0)
 	}
 
 	if opt.root == "" {
