@@ -14,7 +14,7 @@ tinyserver
 Install:
 --------
 ```sh
-go get -v -u github.com/kamisari/go-tinyserver/tinyserver
+go get -v -u github.com/yaeshimo/go-tinyserver/tinyserver
 ```
 
 License:
