@@ -1,20 +1,30 @@
 go-tinyserver
 =============
-tiny fileserver
+tiny server
 
 Usage:
 ------
+File serve on current directory
 ```sh
-cd ${serv_root}
+cd "$serv_root"
 tinyserver
-# default port is 127.0.0.1:8080
-# push ctrl-c to exit
+
+# on another terminal
+curl localhost:8080/srv/
+```
+
+Specify serve file
+```sh
+tinyserver -file "$file"
+
+# on another terminal
+curl localhost:8080/srv/
 ```
 
 Install:
 --------
 ```sh
-go get -v -u github.com/yaeshimo/go-tinyserver/tinyserver
+go get github.com/yaeshimo/go-tinyserver/tinyserver
 ```
 
 License:
