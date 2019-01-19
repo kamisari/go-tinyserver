@@ -2,7 +2,7 @@ all:
 	go build
 	./gots -help
 
-arm:
+arm7:
 	GOOS=linux GOARCH=arm GOARM=7 go build
 
 win:

@@ -35,7 +35,7 @@ func template(w io.Writer) error {
 	c := &Config{
 		Addr: "localhost:8080",
 		Root: "/path/to/srv/root/dir/",
-		File: "/path/to/file",
+		File: "/path/to/srv/file",
 	}
 	b, err := json.MarshalIndent(c, "", "  ")
 	if err != nil {
