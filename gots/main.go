@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	Name        = "tinyserver"
+	Name        = "gots"
 	Version     = "0.3.0"
 	DefaultAddr = ":8080"
 )
